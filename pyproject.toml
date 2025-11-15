@@ -17,9 +17,40 @@ dependencies = [
 
 [dependency-groups]
 dev = [
-    "black>=25.11.0",
+    # black ha sido eliminado
     "mypy>=1.18.2",
     "pre-commit>=4.4.0",
     "pytest>=9.0.1",
-    "ruff>=0.14.5",
+    "ruff>=0.4.0", # Actualizado a una versión moderna
 ]
+
+# [tool.black] <-- Esta sección se elimina por completo
+
+[tool.ruff]
+# Configuración global de Ruff
+line-length = 88
+target-version = "py312"
+
+[tool.ruff.lint]
+# Reglas del Linter (las que ya tenías)
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort (ordenar imports)
+    "B",   # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "UP",  # pyupgrade
+]
+# "ignore = ["E501"]" <-- Se elimina, ya que 'line-length = 88' lo maneja
+
+[tool.ruff.format]
+# NUEVA sección: Le dice a Ruff que formatee como Black
+quote-style = "double"
+indent-style = "space"
+
+[tool.mypy]
+python_version = "3.12"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
